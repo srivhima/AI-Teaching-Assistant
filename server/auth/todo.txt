@@ -1,0 +1,5 @@
+1. User schema
+2. hash password function using bcrypt
+3. export api routes for students and teacher signup (POST)
+4. create a authgentication function to check if user if user is signed up
+5. export login api routes (GET)
