@@ -1,12 +1,12 @@
 import os
 import certifi
 from pymongo import MongoClient
+from dotenv import load_dotenv
 
-MONGO_URI = os.environ.get("MONGO_URI")
-DB_NAME = os.environ.get("DB_NAME", "tutorRag")
+load_dotenv()
 
-if not MONGO_URI:
-    raise Exception("MONGO_URI not found")
+MONGO_URI = os.getenv("MONGO_URI")
+DB_NAME = os.getenv("DB_NAME", "tutorRag")
 
 print("Mongo URI loaded:", MONGO_URI[:25])
 
@@ -14,10 +14,10 @@ client = MongoClient(
     MONGO_URI,
     tls=True,
     tlsCAFile=certifi.where(),
-    serverSelectionTimeoutMS=10000
+    serverSelectionTimeoutMS=30000,
+    connect=False
 )
 
-client.admin.command("ping")
 
 db = client[DB_NAME]
 
