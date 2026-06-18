@@ -27,7 +27,8 @@ requests
 tqdm
 
 #Authentication
-pymongo[bson]
+pymongo
+certifi
 bcrypt
 
 streamlit
