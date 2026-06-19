@@ -6,17 +6,19 @@ from dotenv import load_dotenv
 load_dotenv()
 
 MONGO_URI = os.getenv("MONGO_URI")
-DB_NAME = os.getenv("DB_NAME", "tutorRag")
+DB_NAME = os.getenv("DB_NAME")
 
-print("Mongo URI loaded:", MONGO_URI[:25])
+print("DB_NAME =", DB_NAME)
+print("URI loaded =", bool(MONGO_URI))
 
 client = MongoClient(
     MONGO_URI,
-    serverSelectionTimeoutMS=30000
+    tlsCAFile=certifi.where(),
+    serverSelectionTimeoutMS=5000,
+    connect=False
 )
 
-
-db = client[DB_NAME]
+db = client.get_database(DB_NAME)
 
 #user_collection
 users_collection = db["users"]
