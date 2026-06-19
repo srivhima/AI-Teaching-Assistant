@@ -51,7 +51,7 @@ def authenticate(credentials: HTTPBasicCredentials = Depends(security)):
         return {
             "username": user["username"],
             "role": user["role"],
-            "grade": user["grade"],
+            **({"grade": user["grade"]} if "grade" in user else {}),
             "user_id": str(user["_id"])
         }
 
