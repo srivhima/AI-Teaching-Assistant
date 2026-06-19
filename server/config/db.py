@@ -12,10 +12,7 @@ print("Mongo URI loaded:", MONGO_URI[:25])
 
 client = MongoClient(
     MONGO_URI,
-    tls=True,
-    tlsCAFile=certifi.where(),
-    serverSelectionTimeoutMS=30000,
-    connect=False
+    serverSelectionTimeoutMS=30000
 )
 
 
