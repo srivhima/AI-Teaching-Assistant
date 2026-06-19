@@ -12,9 +12,9 @@ print("DB_NAME =", DB_NAME)
 print("URI loaded =", bool(MONGO_URI))
 
 client = MongoClient(
-    MONGO_URI,
+    os.getenv("MONGO_URI"),
     tlsCAFile=certifi.where(),
-    serverSelectionTimeoutMS=5000,
+    serverSelectionTimeoutMS=30000,
     connect=False
 )
 
